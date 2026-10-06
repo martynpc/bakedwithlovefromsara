@@ -1,0 +1,17 @@
+---
+import { site } from '../site.config';
+const home = Astro.url.pathname === '/';
+---
+
+<header class={`absolute inset-x-0 top-0 z-20 ${home ? 'text-white' : 'text-cocoa'}`}>
+  <div class="wrap flex items-center justify-between py-5 md:py-7">
+    <a href="/" class="font-display text-[1.35rem] md:text-2xl tracking-wide no-underline" style="color: inherit">
+      {site.name}
+    </a>
+    <nav aria-label="Main" class="flex items-center gap-6 md:gap-9 text-[0.95rem] font-normal">
+      <a href="/#cakes" class="hidden sm:inline hover:opacity-70 transition-opacity" style="color: inherit">Cakes</a>
+      <a href="/#courses" class="hidden sm:inline hover:opacity-70 transition-opacity" style="color: inherit">Courses</a>
+      <a href="/#enquire" class="hover:opacity-70 transition-opacity" style="color: inherit">Enquire</a>
+    </nav>
+  </div>
+</header>

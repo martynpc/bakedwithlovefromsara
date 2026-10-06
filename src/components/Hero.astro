@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { site } from '../site.config';
+
+interface Props { slides: CollectionEntry<'cakes'>[] }
+const { slides } = Astro.props;
+---
+
+<section class="relative h-[88svh] min-h-[34rem] max-h-[60rem] bg-blush text-white overflow-hidden" aria-label="Sara's cakes">
+  <div class="hero-viewport absolute inset-0" data-hero>
+    <div class="hero-track h-full">
+      {slides.map((s, i) => (
+        <div class="hero-slide h-full" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}: ${s.data.title}`}>
+          <Image
+            src={s.data.cover}
+            alt={s.data.title}
+            widths={[640, 1024, 1600, 2200]}
+            sizes="100vw"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Soft milk-to-clear veil so white text reads on any photo. -->
+  <div class="absolute inset-0 bg-gradient-to-t from-cocoa/55 via-cocoa/10 to-transparent pointer-events-none"></div>
+
+  <div class="wrap relative h-full flex flex-col justify-end pb-14 md:pb-20">
+    <h1 class="display-xl rise max-w-[14ch] text-white font-light">
+      <em class="not-italic font-light">{site.tagline}</em>
+    </h1>
+    <p class="rise rise-2 mt-5 max-w-[48ch] text-white/90 text-[1.05rem] md:text-lg leading-relaxed">
+      {site.intro}
+    </p>
+    <div class="rise rise-3 mt-8 flex flex-wrap gap-3">
+      <a href="#cakes" class="btn">See the cakes</a>
+      <a href="#enquire" class="btn btn-quiet !text-white !shadow-[inset_0_0_0_1px_rgba(255,255,255,0.6)] hover:!bg-white/15">Ask about a date</a>
+    </div>
+
+    <div class="mt-10 flex items-center gap-2" data-hero-dots role="tablist" aria-label="Choose photo">
+      {slides.map((s, i) => (
+        <button type="button" class="hero-dot" role="tab" aria-label={s.data.title} aria-current={i === 0 ? 'true' : 'false'} data-index={i}></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+  import Fade from 'embla-carousel-fade';
+
+  const root = document.querySelector<HTMLElement>('[data-hero]');
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-hero-dots] button'));
+  if (root) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const plugins = [Fade()];
+    if (!reduce) plugins.push(Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: true }));
+    const embla = EmblaCarousel(root, { loop: true, duration: 60 }, plugins);
+
+    const sync = () => {
+      const i = embla.selectedScrollSnap();
+      dots.forEach((d, j) => d.setAttribute('aria-current', i === j ? 'true' : 'false'));
+    };
+    embla.on('select', sync);
+    dots.forEach((d) => d.addEventListener('click', () => embla.scrollTo(Number(d.dataset.index))));
+  }
+</script>

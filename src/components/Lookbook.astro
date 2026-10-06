@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { cakes: CollectionEntry<'cakes'>[] }
+const { cakes } = Astro.props;
+---
+
+<section id="cakes" class="scroll-mt-20 pt-20 md:pt-28">
+  <div class="wrap">
+    <div class="max-w-[60ch]">
+      <h2 class="display-lg">Recent cakes</h2>
+      <p class="mt-4 text-[1.05rem]">
+        Every cake is made to order for one occasion. These are a few from the last year; tap one to see the flavours and who it was for.
+      </p>
+    </div>
+
+    <ul class="lookbook mt-10 md:mt-14 list-none p-0 m-0">
+      {cakes.map((c) => (
+        <li class={`tile relative ${c.data.tile === 'wide' ? 'tile-wide' : ''} ${c.data.tile === 'tall' ? 'tile-tall' : ''}`}>
+          <a href={`/cakes/${c.id}`} class="group block h-full no-underline" aria-label={`${c.data.title} — ${c.data.occasion}`}>
+            <Image
+              src={c.data.cover}
+              alt={c.data.title}
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              loading="lazy"
+            />
+            <span class="absolute left-3 bottom-3 md:left-4 md:bottom-4 max-w-[calc(100%-1.5rem)] inline-flex items-baseline gap-2 rounded-full bg-milk/90 px-3.5 py-1.5 text-[0.85rem] text-cocoa backdrop-blur-sm">
+              <span class="font-display text-[1.05rem] leading-none truncate md:overflow-visible md:whitespace-normal">{c.data.title}</span>
+              <span class="hidden md:inline text-taupe-soft whitespace-nowrap">{c.data.occasion}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+---
+import { site } from '../site.config';
+// Set PUBLIC_WEB3FORMS_KEY in .env (and in Cloudflare Pages → Settings →
+// Environment variables) to turn the form on. Without it, the section still
+// works: Messenger and email are Sara's real order channels today.
+const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
+---
+
+<section id="enquire" class="scroll-mt-20 pt-24 md:pt-32">
+  <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16">
+    <div class="md:col-span-5">
+      <h2 class="display-lg">Tell Sara about your occasion</h2>
+      <p class="mt-5 text-[1.05rem]">
+        The date, how many people, and anything you already have in mind. Sara replies within a day
+        or two with ideas and a price.
+      </p>
+      <p class="mt-3 text-[0.95rem] text-taupe-soft">{site.leadTime}</p>
+
+      <div class="mt-8 flex flex-col items-start gap-3">
+        <a href={site.messenger} class="btn" target="_blank" rel="noopener">Message on Facebook</a>
+        {site.whatsapp && <a href={site.whatsapp} class="btn btn-quiet" target="_blank" rel="noopener">Message on WhatsApp</a>}
+        <a href={`mailto:${site.email}?subject=Cake%20enquiry`} class="link mt-2 text-[0.95rem]">or email {site.email}</a>
+      </div>
+    </div>
+
+    {formKey && (
+      <form
+        class="md:col-span-7 grid gap-4"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+      >
+        <input type="hidden" name="access_key" value={formKey} />
+        <input type="hidden" name="subject" value="New cake enquiry from the website" />
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="grid gap-1.5 text-[0.9rem] text-cocoa">
+            Your name
+            <input class="field" name="name" required autocomplete="name" />
+          </label>
+          <label class="grid gap-1.5 text-[0.9rem] text-cocoa">
+            Email or phone
+            <input class="field" name="contact" required autocomplete="email" />
+          </label>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="grid gap-1.5 text-[0.9rem] text-cocoa">
+            Date of the occasion
+            <input class="field" type="date" name="date" />
+          </label>
+          <label class="grid gap-1.5 text-[0.9rem] text-cocoa">
+            What is it for
+            <select class="field" name="occasion">
+              <option>Birthday</option>
+              <option>Christening</option>
+              <option>Wedding</option>
+              <option>Another celebration</option>
+              <option>A baking course</option>
+            </select>
+          </label>
+        </div>
+        <label class="grid gap-1.5 text-[0.9rem] text-cocoa">
+          Tell Sara what you have in mind
+          <textarea class="field min-h-36" name="message" placeholder="How many people, flavours you like, anything to avoid"></textarea>
+        </label>
+        <div class="flex items-center gap-4 mt-1">
+          <button type="submit" class="btn">Send enquiry</button>
+          <span class="text-[0.85rem] text-taupe-soft">Goes straight to Sara’s inbox.</span>
+        </div>
+      </form>
+    )}
+  </div>
+</section>

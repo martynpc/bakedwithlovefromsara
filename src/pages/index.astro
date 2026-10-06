@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Lookbook from '../components/Lookbook.astro';
+import About from '../components/About.astro';
+import Courses from '../components/Courses.astro';
+import Enquire from '../components/Enquire.astro';
+
+const cakes = (await getCollection('cakes')).sort((a, b) => a.data.order - b.data.order);
+const featured = cakes.filter((c) => c.data.featured);
+const slides = featured.length ? featured : cakes.slice(0, 4);
+---
+
+<Base>
+  <Hero slides={slides} />
+  <Lookbook cakes={cakes} />
+  <About />
+  <Courses />
+  <Enquire />
+</Base>
