@@ -1,10 +1,11 @@
 ---
-title: Baking for beginners
+title: "Baking for beginners"
 occasion: Course
-cover: ../../assets/cakes/placeholder-8.jpg
-tile: wide
-order: 80
-summary: A small-group afternoon in Sara's kitchen. You go home with a cake you made.
+cover: ../../assets/cakes/sara-in-the-kitchen.jpg
+featured: false
+tile: standard
+order: 120
+summary: "Learn to bake light, simple cakes with Sára, even if you think you can't."
 ---
 
-A relaxed afternoon for people who think they can't bake. Small groups, everyday ingredients, and you leave with a cake you made yourself.
+Learn to bake light, simple cakes with Sára, even if you think you can't.

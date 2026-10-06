@@ -27,10 +27,11 @@ const { slides } = Astro.props;
   </div>
 
   <!-- Soft milk-to-clear veil so white text reads on any photo. -->
-  <div class="absolute inset-0 bg-gradient-to-t from-cocoa/55 via-cocoa/10 to-transparent pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-cocoa/70 via-cocoa/20 to-transparent pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-cocoa/60 via-cocoa/15 to-transparent pointer-events-none hidden md:block"></div>
 
   <div class="wrap relative h-full flex flex-col justify-end pb-14 md:pb-20">
-    <h1 class="display-xl rise max-w-[14ch] text-white font-light">
+    <h1 class="display-xl rise max-w-[14ch] text-white font-light [text-shadow:0_1px_24px_rgba(43,35,32,0.35)]">
       <em class="not-italic font-light">{site.tagline}</em>
     </h1>
     <p class="rise rise-2 mt-5 max-w-[48ch] text-white/90 text-[1.05rem] md:text-lg leading-relaxed">

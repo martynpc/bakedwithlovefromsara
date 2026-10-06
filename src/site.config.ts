@@ -6,7 +6,7 @@ export const site = {
   tagline: 'Light, honest cakes, baked in Dorset.',
   // One sentence under the headline. Keep it under ~110 characters.
   intro:
-    'Fresh cream, real fruit, no artificial additives. Cakes for birthdays, christenings and small weddings, and baking courses for people who think they can’t.',
+    'Light cakes made from everyday ingredients, with no artificial additives. Cakes for birthdays and celebrations, and baking courses for people who think they can’t.',
   location: 'Dorset, UK',
   email: 'saraivana76@gmail.com',
   facebook: 'https://www.facebook.com/saralovebakecakes',

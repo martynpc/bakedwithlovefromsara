@@ -11,7 +11,7 @@ const { cakes } = Astro.props;
     <div class="max-w-[60ch]">
       <h2 class="display-lg">Recent cakes</h2>
       <p class="mt-4 text-[1.05rem]">
-        Every cake is made to order for one occasion. These are a few from the last year; tap one to see the flavours and who it was for.
+        Every cake is made to order. These are a few from the last year; tap one for a closer look.
       </p>
     </div>
 
@@ -27,8 +27,7 @@ const { cakes } = Astro.props;
               loading="lazy"
             />
             <span class="absolute left-3 bottom-3 md:left-4 md:bottom-4 max-w-[calc(100%-1.5rem)] inline-flex items-baseline gap-2 rounded-full bg-milk/90 px-3.5 py-1.5 text-[0.85rem] text-cocoa backdrop-blur-sm">
-              <span class="font-display text-[1.05rem] leading-none truncate md:overflow-visible md:whitespace-normal">{c.data.title}</span>
-              <span class="hidden md:inline text-taupe-soft whitespace-nowrap">{c.data.occasion}</span>
+              <span class="font-display text-[1.05rem] leading-tight truncate">{c.data.title}</span>
             </span>
           </a>
         </li>
