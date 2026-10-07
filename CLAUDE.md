@@ -35,3 +35,10 @@ Showcase website for Sára Ivana, a home baker in Dorset. Static Astro site, hos
 ## Hosting constraints
 - Cloudflare Pages free plan. Build command `npm run build`, output `dist`. Node 22.
 - Do not add Vercel-specific features; the Hobby plan forbids commercial use and this is a business site.
+
+## Email (Cloudflare Email Routing)
+- hello@bakedwithlovefromsara.co.uk → routing rule → Worker `sara-hello-autoreply` (code mirrored in `email-worker/hello-autoreply.js`).
+- The Worker forwards to saraivana76@gmail.com and sends one auto-reply saying Sára will reply from her Gmail; it never replies to no-reply/list/auto-generated mail.
+- Forwarding only works once saraivana76@gmail.com is Verified under Email Routing → Destination addresses.
+- The Worker is edited in the Cloudflare dashboard, not deployed from this repo. Keep the file here in sync if the dashboard code changes.
+- Catch-all rule is Drop: any other address @bakedwithlovefromsara.co.uk is discarded.
