@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { cakeImage } from '../lib/images';
 
 interface Props { cakes: CollectionEntry<'cakes'>[] }
 const { cakes } = Astro.props;
@@ -20,7 +21,7 @@ const { cakes } = Astro.props;
         <li class={`tile relative ${c.data.tile === 'wide' ? 'tile-wide' : ''} ${c.data.tile === 'tall' ? 'tile-tall' : ''}`}>
           <a href={`/cakes/${c.id}`} class="group block h-full no-underline" aria-label={`${c.data.title} — ${c.data.occasion}`}>
             <Image
-              src={c.data.cover}
+              src={cakeImage(c.data.cover)}
               alt={c.data.title}
               widths={[480, 800, 1200]}
               sizes="(min-width: 768px) 50vw, 100vw"

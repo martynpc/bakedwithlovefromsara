@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { site } from '../../site.config';
+import { cakeImage } from '../../lib/images';
 
 export async function getStaticPaths() {
   const cakes = await getCollection('cakes');
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
 
 const { cake } = Astro.props;
 const { Content } = await render(cake);
-const og = await getImage({ src: cake.data.cover, width: 1200, format: 'jpeg' });
+const og = await getImage({ src: cakeImage(cake.data.cover), width: 1200, format: 'jpeg' });
 const ogUrl = new URL(og.src, Astro.site).toString();
 const isCourse = cake.data.occasion === 'Course';
 const alt = isCourse ? `${site.baker} in her kitchen` : cake.data.title;
@@ -23,7 +24,7 @@ const askLabel = isCourse ? 'Ask about the next course' : 'Ask about one like th
     <div class="wrap grid md:grid-cols-12 gap-8 md:gap-14">
       <div class="md:col-span-7">
         <Image
-          src={cake.data.cover}
+          src={cakeImage(cake.data.cover)}
           alt={alt}
           widths={[640, 1024, 1600]}
           sizes="(min-width: 768px) 58vw, 100vw"
@@ -33,7 +34,7 @@ const askLabel = isCourse ? 'Ask about the next course' : 'Ask about one like th
         {cake.data.gallery.length > 0 && (
           <div class="mt-4 grid grid-cols-2 gap-4">
             {cake.data.gallery.map((g) => (
-              <Image src={g} alt="" widths={[480, 800]} sizes="(min-width: 768px) 29vw, 50vw" loading="lazy" class="w-full h-auto rounded-xl" />
+              <Image src={cakeImage(g)} alt="" widths={[480, 800]} sizes="(min-width: 768px) 29vw, 50vw" loading="lazy" class="w-full h-auto rounded-xl" />
             ))}
           </div>
         )}

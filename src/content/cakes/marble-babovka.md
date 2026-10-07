@@ -1,7 +1,7 @@
 ---
 title: "Marble bábovka"
 occasion: Everyday
-cover: ../../assets/cakes/marble-babovka.jpg
+cover: /cakes/marble-babovka.jpg
 featured: false
 tile: standard
 order: 100

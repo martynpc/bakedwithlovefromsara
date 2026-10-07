@@ -1,7 +1,7 @@
 ---
 title: "Mango cheesecake"
 occasion: Everyday
-cover: ../../assets/cakes/mango-cheesecake.jpg
+cover: /cakes/mango-cheesecake.jpg
 featured: false
 tile: standard
 order: 60

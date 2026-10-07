@@ -1,7 +1,7 @@
 ---
 title: "Blueberry cream cake"
 occasion: Celebration
-cover: ../../assets/cakes/blueberry-cream.jpg
+cover: /cakes/blueberry-cream.jpg
 featured: false
 tile: standard
 order: 70

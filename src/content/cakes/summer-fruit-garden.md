@@ -1,7 +1,7 @@
 ---
 title: "Summer fruit cake"
 occasion: Celebration
-cover: ../../assets/cakes/summer-fruit-garden.jpg
+cover: /cakes/summer-fruit-garden.jpg
 featured: true
 tile: wide
 order: 10

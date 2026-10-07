@@ -1,7 +1,7 @@
 ---
 title: "Tiramisu cake"
 occasion: Everyday
-cover: ../../assets/cakes/tiramisu-cake.jpg
+cover: /cakes/tiramisu-cake.jpg
 featured: false
 tile: standard
 order: 90

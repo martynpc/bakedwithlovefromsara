@@ -1,18 +1,19 @@
-// Single place for everything that is "about Sara" rather than about layout.
-// Claude Code can edit this file safely; nothing else needs to change.
+// Everything "about Sara" rather than about layout.
+// The editable parts (tagline, intro, email, links, lead time) live in
+// src/data/site.json so Sara can change them in Pages CMS ("Site details").
+import editable from './data/site.json';
+
 export const site = {
   name: 'Baked with love from Sara',
   baker: 'Sára Ivana',
-  tagline: 'Light, honest cakes, baked in Dorset.',
-  // One sentence under the headline. Keep it under ~110 characters.
-  intro:
-    'Light cakes made from everyday ingredients, with no artificial additives. Cakes for birthdays and celebrations, and baking courses for people who think they can’t.',
   location: 'Dorset, UK',
-  email: 'saraivana76@gmail.com',
   facebook: 'https://www.facebook.com/saralovebakecakes',
   messenger: 'https://m.me/saralovebakecakes',
-  instagram: 'https://www.instagram.com/sarasit76', // confirm handle with Sara
-  whatsapp: '', // e.g. 'https://wa.me/447XXXXXXXXX' — leave empty to hide
-  // Lead time shown in the enquiry section. Confirm with Sara.
-  leadTime: 'Please allow at least two weeks’ notice for celebration cakes.',
-} as const;
+  tagline: editable.tagline,
+  intro: editable.intro,
+  email: editable.email,
+  instagram: editable.instagram,
+  // e.g. 'https://wa.me/447XXXXXXXXX'; empty hides the WhatsApp button.
+  whatsapp: editable.whatsapp,
+  leadTime: editable.leadTime,
+};

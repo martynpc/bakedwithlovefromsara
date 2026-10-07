@@ -1,7 +1,7 @@
 ---
 title: "Tenth birthday roses"
 occasion: Birthday
-cover: ../../assets/cakes/tenth-birthday-roses.jpg
+cover: /cakes/tenth-birthday-roses.jpg
 featured: true
 tile: tall
 order: 20

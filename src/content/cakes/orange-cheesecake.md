@@ -1,7 +1,7 @@
 ---
 title: "Orange cheesecake"
 occasion: Everyday
-cover: ../../assets/cakes/orange-cheesecake.jpg
+cover: /cakes/orange-cheesecake.jpg
 featured: false
 tile: wide
 order: 50

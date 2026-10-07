@@ -1,7 +1,7 @@
 ---
 title: "Raspberry and strawberry cheesecake"
 occasion: Celebration
-cover: ../../assets/cakes/raspberry-strawberry-cheesecake.jpg
+cover: /cakes/raspberry-strawberry-cheesecake.jpg
 featured: true
 tile: wide
 order: 30

@@ -1,0 +1,108 @@
+# Pages CMS settings (https://pagescms.org) — the editing screen Sara uses.
+# Saving in Pages CMS commits to GitHub; Cloudflare Pages then rebuilds the site.
+# Only the fields below are editable there; layout and design stay in code.
+
+media:
+  input: src/assets/cakes
+  output: /cakes
+  categories: [image]
+
+content:
+  - name: cakes
+    label: Cakes
+    type: collection
+    path: src/content/cakes
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [title, occasion, featured]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Cake name
+        type: string
+        required: true
+      - name: cover
+        label: Main photo
+        type: image
+        required: true
+      - name: occasion
+        label: Occasion
+        type: select
+        required: true
+        options:
+          values: [Birthday, Wedding, Christening, Celebration, Everyday, Course]
+      - name: summary
+        label: One-line description
+        description: Shown on the cake's page and in Google results. One sentence.
+        type: text
+        required: true
+      - name: featured
+        label: Show in the big slideshow at the top
+        description: Keep this on for 3 to 5 of the best photos only.
+        type: boolean
+        default: false
+      - name: tile
+        label: Size in the photo grid
+        description: Standard for most. Wide or Tall for the very best photos.
+        type: select
+        default: standard
+        options:
+          values: [standard, wide, tall]
+      - name: order
+        label: Position
+        description: Lower numbers appear first, e.g. 10, 20, 30.
+        type: number
+        default: 100
+      - name: flavours
+        label: Flavours
+        type: string
+        list: true
+      - name: serves
+        label: Serves
+        description: e.g. 12 to 16
+        type: string
+      - name: fromPrice
+        label: Price from
+        description: e.g. £45. Leave empty to hide.
+        type: string
+      - name: gallery
+        label: Extra photos
+        type: image
+        list: true
+      - name: body
+        label: Longer description
+        type: text
+
+  - name: site
+    label: Site details
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: tagline
+        label: Headline on the home page
+        type: string
+        required: true
+      - name: intro
+        label: Sentence under the headline
+        type: text
+        required: true
+      - name: email
+        label: Contact email shown on the site
+        type: string
+        required: true
+      - name: instagram
+        label: Instagram link
+        type: string
+      - name: whatsapp
+        label: WhatsApp link
+        description: e.g. https://wa.me/447123456789 — leave empty to hide the WhatsApp button.
+        type: string
+      - name: leadTime
+        label: Notice needed for orders
+        type: text

@@ -8,16 +8,20 @@ Showcase website for Sára Ivana, a home baker in Dorset. Static Astro site, hos
 - `npm run images:prep -- ./incoming` — resize/clean phone photos into `src/assets/cakes/`
 
 ## Where things live
-- `src/site.config.ts` — name, tagline, intro, email, Facebook/Messenger/Instagram/WhatsApp links, lead time. Edit here, not in components.
+- `src/data/site.json` — tagline, intro, email, Instagram/WhatsApp links, lead time (Sara edits these in Pages CMS → Site details).
+- `src/site.config.ts` — fixed details (name, Facebook/Messenger) plus the values from site.json. Edit here, not in components.
+- `.pages.yml` — Pages CMS settings: which fields Sara can edit. Keep in sync with `src/content.config.ts`.
+- `src/lib/images.ts` — resolves a cake's photo by FILE NAME from `src/assets/cakes/`, whatever path prefix is stored.
 - `src/content/cakes/*.md` — one file per cake. Frontmatter schema is in `src/content.config.ts`.
-- `src/assets/cakes/` — source photos. Reference from markdown as `../../assets/cakes/<file>.jpg`.
+- `src/assets/cakes/` — source photos. Reference from markdown as `/cakes/<file>.jpg` (the Pages CMS format).
 - `src/styles/global.css` — all design tokens (`@theme`) and the few hand-written component classes.
 - `src/components/` — Hero (Embla crossfade), Lookbook (grid), About, Courses, Enquire, Header, Footer.
 - `src/pages/index.astro` — assembles the home page. `src/pages/cakes/[id].astro` — one page per cake.
 
 ## Adding a cake (the common job)
+Sara normally does this herself in Pages CMS (app.pagescms.org). To do it by hand:
 1. Put the photo in `src/assets/cakes/` (run `images:prep` if it came from a phone).
-2. Create `src/content/cakes/<slug>.md` with `title`, `occasion`, `cover`, `summary`, optional `flavours`, `serves`, `fromPrice`.
+2. Create `src/content/cakes/<slug>.md` with `title`, `occasion`, `cover: /cakes/<file>.jpg`, `summary`, optional `flavours`, `serves`, `fromPrice`.
 3. Set `featured: true` on 3–5 cakes total for the hero. Use `tile: wide` or `tile: tall` so the grid fills (4 columns on desktop; keep the cell count a multiple of 4).
 4. `npm run build`, check it, commit. Cloudflare deploys on push.
 
@@ -42,3 +46,8 @@ Showcase website for Sára Ivana, a home baker in Dorset. Static Astro site, hos
 - Forwarding only works once saraivana76@gmail.com is Verified under Email Routing → Destination addresses.
 - The Worker is edited in the Cloudflare dashboard, not deployed from this repo. Keep the file here in sync if the dashboard code changes.
 - Catch-all rule is Drop: any other address @bakedwithlovefromsara.co.uk is discarded.
+
+## Content editing (Pages CMS)
+- Sara edits cakes and site details at app.pagescms.org as an email-invited collaborator on martynpc/bakedwithlovefromsara.
+- Every save is a commit to `main`; Cloudflare Pages rebuilds automatically. A failed build leaves the previous version live.
+- The content schema is deliberately lenient (blank optional fields default safely). Don't tighten it without updating `.pages.yml`.

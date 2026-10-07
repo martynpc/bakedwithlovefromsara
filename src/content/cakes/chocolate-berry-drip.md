@@ -1,7 +1,7 @@
 ---
 title: "Chocolate and berry drip"
 occasion: Birthday
-cover: ../../assets/cakes/chocolate-berry-drip.jpg
+cover: /cakes/chocolate-berry-drip.jpg
 featured: true
 tile: standard
 order: 40

@@ -1,7 +1,7 @@
 ---
 title: "Baking for beginners"
 occasion: Course
-cover: ../../assets/cakes/sara-in-the-kitchen.jpg
+cover: /cakes/sara-in-the-kitchen.jpg
 featured: false
 tile: standard
 order: 120

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { site } from '../site.config';
+import { cakeImage } from '../lib/images';
 
 interface Props { slides: CollectionEntry<'cakes'>[] }
 const { slides } = Astro.props;
@@ -13,7 +14,7 @@ const { slides } = Astro.props;
       {slides.map((s, i) => (
         <div class="hero-slide h-full" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}: ${s.data.title}`}>
           <Image
-            src={s.data.cover}
+            src={cakeImage(s.data.cover)}
             alt={s.data.title}
             widths={[640, 1024, 1600, 2200]}
             sizes="100vw"

@@ -1,7 +1,7 @@
 ---
 title: "Fortieth birthday strawberry cake"
 occasion: Birthday
-cover: ../../assets/cakes/fortieth-birthday-strawberry.jpg
+cover: /cakes/fortieth-birthday-strawberry.jpg
 featured: false
 tile: standard
 order: 110

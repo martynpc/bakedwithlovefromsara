@@ -1,7 +1,7 @@
 ---
 title: "Strawberry semi-naked cake"
 occasion: Birthday
-cover: ../../assets/cakes/strawberry-naked-cake.jpg
+cover: /cakes/strawberry-naked-cake.jpg
 featured: false
 tile: standard
 order: 80
