@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "q": "How do I order a cake?",
+      "a": "Send Sára a message on Facebook or an email with the date, how many people it's for, and any ideas you have. She'll reply with suggestions and a price.",
+      "q_sk": "Ako si objednám tortu?",
+      "a_sk": "Napíšte Sáre na Facebooku alebo e-mailom dátum, pre koľko ľudí má torta byť a svoje nápady. Odpovie vám s návrhmi a cenou."
+    },
+    {
+      "q": "How far ahead should I order?",
+      "a": "Please allow at least two weeks' notice for celebration cakes. If your date is sooner, ask anyway.",
+      "q_sk": "S akým predstihom si mám tortu objednať?",
+      "a_sk": "Na slávnostné torty prosím počítajte aspoň s dvojtýždňovým predstihom. Ak potrebujete tortu skôr, pokojne sa spýtajte."
+    },
+    {
+      "q": "What goes into the cakes?",
+      "a": "Everyday ingredients you could buy in any shop: light sponges, cream and fresh fruit. No artificial additives or substitutes.",
+      "q_sk": "Z čoho sú torty?",
+      "a_sk": "Z bežne dostupných surovín: ľahké piškóty, smotana a čerstvé ovocie. Bez umelých prísad a náhrad."
+    },
+    {
+      "q": "I have an allergy. Can you help?",
+      "a": "The cakes contain gluten, eggs and dairy, and some contain nuts such as almonds. Tell Sára about any allergy before you order so she can tell you what's possible.",
+      "q_sk": "Mám alergiu. Dá sa s tým niečo urobiť?",
+      "a_sk": "Torty obsahujú lepok, vajcia a mliečne výrobky, niektoré aj orechy, napríklad mandle. Pred objednávkou Sáre o alergii povedzte a ona vám povie, čo je možné."
+    },
+    {
+      "q": "How much does a cake cost?",
+      "a": "It depends on the size and the decoration. Tell Sára what you'd like and she'll give you a price before anything is baked.",
+      "q_sk": "Koľko stojí torta?",
+      "a_sk": "Závisí to od veľkosti a zdobenia. Povedzte Sáre, akú tortu by ste chceli, a ešte pred pečením vám povie cenu."
+    },
+    {
+      "q": "Do you run baking courses?",
+      "a": "Yes. Sára teaches beginners to bake light, simple cakes step by step. New dates are announced on Facebook first.",
+      "q_sk": "Organizujete kurzy pečenia?",
+      "a_sk": "Áno. Sára učí začiatočníkov krok za krokom piecť ľahké, jednoduché torty. Nové termíny oznamujeme najskôr na Facebooku."
+    },
+    {
+      "q": "Where are you based?",
+      "a": "In Dorset. Collection or delivery is arranged with Sára when you order.",
+      "q_sk": "Kde pôsobíte?",
+      "a_sk": "V Dorsete. Vyzdvihnutie alebo doručenie si dohodnete so Sárou pri objednávke."
+    }
+  ]
+}

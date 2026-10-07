@@ -6,6 +6,7 @@ import Base from '../layouts/Base.astro';
 import { site } from '../site.config';
 import { cakeImage } from '../lib/images';
 import { cakeText, href, ui, type Lang } from '../i18n';
+import { cakeSchemas } from '../lib/schema';
 
 interface Props { cake: CollectionEntry<'cakes'>; lang: Lang }
 const { cake, lang } = Astro.props;
@@ -21,7 +22,7 @@ const paras = (ct.description || ct.summary).split(/\n{2,}/).filter(Boolean);
 const isEn = lang === 'en';
 ---
 
-<Base lang={lang} title={ct.title} description={ct.summary} ogImage={ogUrl}>
+<Base lang={lang} title={ct.title} description={ct.summary} ogImage={ogUrl} schema={cakeSchemas(cake, lang, ogUrl)}>
   <article class="pt-28 md:pt-36">
     <div class="wrap grid md:grid-cols-12 gap-8 md:gap-14">
       <div class="md:col-span-7">

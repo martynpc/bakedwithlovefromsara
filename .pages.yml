@@ -129,3 +129,29 @@ content:
       - name: leadTime_sk
         label: Notice needed for orders (Slovak)
         type: text
+
+  - name: faq
+    label: Questions (FAQ)
+    type: file
+    path: src/data/faq.json
+    format: json
+    fields:
+      - name: items
+        label: Questions
+        type: object
+        list: true
+        fields:
+          - name: q
+            label: Question
+            type: string
+            required: true
+          - name: a
+            label: Answer
+            type: text
+            required: true
+          - name: q_sk
+            label: Question (Slovak)
+            type: string
+          - name: a_sk
+            label: Answer (Slovak)
+            type: text

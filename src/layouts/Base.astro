@@ -11,8 +11,10 @@ interface Props {
   description?: string;
   /** Absolute URL of an image for link previews (Facebook, WhatsApp). */
   ogImage?: string;
+  /** schema.org JSON-LD objects for this page. */
+  schema?: object[];
 }
-const { lang, title, description, ogImage } = Astro.props;
+const { lang, title, description, ogImage, schema = [] } = Astro.props;
 const t = ui[lang];
 const text = siteText(lang);
 const desc = description || text.intro;
@@ -49,17 +51,7 @@ const canonical = url(lang);
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Mulish:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Bakery',
-      name: site.name,
-      email: site.email,
-      url: Astro.site?.toString(),
-      inLanguage: htmlLang[lang],
-      knowsLanguage: ['en', 'sk'],
-      address: { '@type': 'PostalAddress', addressRegion: 'Dorset', addressCountry: 'GB' },
-      sameAs: [site.facebook, site.instagram].filter(Boolean),
-    })} />
+    {schema.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
   </head>
   <body>
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-milk focus:px-4 focus:py-2 focus:rounded-full">{t.skip}</a>

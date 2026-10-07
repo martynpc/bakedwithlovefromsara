@@ -59,3 +59,10 @@ Sara normally does this herself in Pages CMS (app.pagescms.org). To do it by han
 - Cakes: `title_sk`, `summary_sk`, `description_sk`, `flavours_sk` (optional, fall back to English). Site details: `tagline_sk`, `intro_sk`, `leadTime_sk` in `src/data/site.json`.
 - The round EN / SK switch (`src/components/LangSwitch.astro`) links to the same page in the other language. `hreflang` alternates are set in `Base.astro`.
 - Slovak copy was written by Claude; Sara should review it and correct it in Pages CMS.
+
+## SEO and AI discoverability
+- Sitemap: `@astrojs/sitemap` writes `/sitemap-index.xml` with EN/SK hreflang pairs; referenced from `public/robots.txt`.
+- `robots.txt` allows all crawlers, including AI assistants. Cloudflare's "Block AI bots" must stay OFF for the zone.
+- Structured data: `src/lib/schema.ts` — Bakery + FAQPage on home pages, Product (or Course) + BreadcrumbList on cake pages. Only use facts already on the site.
+- `/llms.txt` is generated from content on every build (`src/pages/llms.txt.ts`).
+- FAQ text lives in `src/data/faq.json` (EN + SK), editable in Pages CMS → Questions (FAQ).

@@ -6,6 +6,8 @@ import Lookbook from '../components/Lookbook.astro';
 import About from '../components/About.astro';
 import Courses from '../components/Courses.astro';
 import Enquire from '../components/Enquire.astro';
+import Faq from '../components/Faq.astro';
+import { bakerySchema, faqSchema } from '../lib/schema';
 import type { Lang } from '../i18n';
 
 interface Props { lang: Lang }
@@ -16,10 +18,11 @@ const featured = cakes.filter((c) => c.data.featured);
 const slides = featured.length ? featured : cakes.slice(0, 4);
 ---
 
-<Base lang={lang}>
+<Base lang={lang} schema={[bakerySchema(lang, cakes, Astro.site!), faqSchema(lang)]}>
   <Hero slides={slides} lang={lang} />
   <Lookbook cakes={cakes} lang={lang} />
   <About lang={lang} />
   <Courses lang={lang} />
+  <Faq lang={lang} />
   <Enquire lang={lang} />
 </Base>

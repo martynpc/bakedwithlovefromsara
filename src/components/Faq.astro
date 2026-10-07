@@ -1,0 +1,39 @@
+---
+import faq from '../data/faq.json';
+import { ui, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const items = faq.items
+  .map((i) => (lang === 'sk' ? { q: i.q_sk || i.q, a: i.a_sk || i.a } : { q: i.q, a: i.a }))
+  .filter((i) => i.q && i.a);
+---
+
+{items.length > 0 && (
+  <section id="faq" class="scroll-mt-20 pt-24 md:pt-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-5">
+        <h2 class="display-lg">{t.faqTitle}</h2>
+      </div>
+      <div class="md:col-span-7 border-t border-line">
+        {items.map((i) => (
+          <details class="faq group border-b border-line">
+            <summary class="flex items-baseline justify-between gap-6 py-5 cursor-pointer list-none text-cocoa text-[1.08rem]">
+              <span>{i.q}</span>
+              <span class="faq-mark text-berry text-xl leading-none" aria-hidden="true">+</span>
+            </summary>
+            <p class="pb-6 pr-8 text-[1.02rem] leading-[1.7]">{i.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq-mark { transition: transform 250ms var(--ease-soft); }
+  .faq[open] .faq-mark { transform: rotate(45deg); }
+  .faq summary:focus-visible { outline-offset: 4px; }
+</style>

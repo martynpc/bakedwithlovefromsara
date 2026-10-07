@@ -1,2 +1,5 @@
+# All search engines and AI assistants are welcome to read this site.
 User-agent: *
 Allow: /
+
+Sitemap: https://bakedwithlovefromsara.co.uk/sitemap-index.xml
