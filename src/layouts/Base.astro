@@ -1,40 +1,52 @@
 ---
 import '../styles/global.css';
-import { site } from '../site.config';
+import { site, siteText } from '../site.config';
+import { barePath, href, htmlLang, ogLocale, ui, type Lang } from '../i18n';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
+  lang: Lang;
   title?: string;
   description?: string;
   /** Absolute URL of an image for link previews (Facebook, WhatsApp). */
   ogImage?: string;
 }
-const { title, description = site.intro, ogImage } = Astro.props;
-const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { lang, title, description, ogImage } = Astro.props;
+const t = ui[lang];
+const text = siteText(lang);
+const desc = description || text.intro;
+const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${text.tagline}`;
+const bare = barePath(Astro.url.pathname);
+const url = (l: Lang) => new URL(href(l, bare), Astro.site).toString();
+const canonical = url(lang);
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={desc} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en-GB" href={url('en')} />
+    <link rel="alternate" hreflang="sk" href={url('sk')} />
+    <link rel="alternate" hreflang="x-default" href={url('en')} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    <meta property="og:locale:alternate" content={ogLocale[lang === 'en' ? 'sk' : 'en']} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="theme-color" content="#fdfbf9" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Mulish:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Mulish:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -43,16 +55,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       name: site.name,
       email: site.email,
       url: Astro.site?.toString(),
+      inLanguage: htmlLang[lang],
+      knowsLanguage: ['en', 'sk'],
       address: { '@type': 'PostalAddress', addressRegion: 'Dorset', addressCountry: 'GB' },
       sameAs: [site.facebook, site.instagram].filter(Boolean),
     })} />
   </head>
   <body>
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-milk focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
-    <Header />
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-milk focus:px-4 focus:py-2 focus:rounded-full">{t.skip}</a>
+    <Header lang={lang} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

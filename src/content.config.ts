@@ -26,6 +26,11 @@ const cakes = defineCollection({
     flavours: z.array(z.string()).nullish().transform((v) => v ?? []),
     serves: z.string().nullish().transform((v) => v || undefined),
     fromPrice: z.string().nullish().transform((v) => v || undefined),
+    // Slovak versions (optional; the Slovak site falls back to English when empty).
+    title_sk: z.string().nullish().transform((v) => v || undefined),
+    summary_sk: z.string().nullish().transform((v) => v || undefined),
+    description_sk: z.string().nullish().transform((v) => v || undefined),
+    flavours_sk: z.array(z.string()).nullish().transform((v) => v ?? []),
   }),
 });
 

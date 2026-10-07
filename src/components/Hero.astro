@@ -1,21 +1,24 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import { site } from '../site.config';
+import { siteText } from '../site.config';
+import { cakeText, ui, type Lang } from '../i18n';
 import { cakeImage } from '../lib/images';
 
-interface Props { slides: CollectionEntry<'cakes'>[] }
-const { slides } = Astro.props;
+interface Props { slides: CollectionEntry<'cakes'>[]; lang: Lang }
+const { slides, lang } = Astro.props;
+const t = ui[lang];
+const text = siteText(lang);
 ---
 
-<section class="relative h-[88svh] min-h-[34rem] max-h-[60rem] bg-blush text-white overflow-hidden" aria-label="Sara's cakes">
+<section class="relative h-[88svh] min-h-[34rem] max-h-[60rem] bg-blush text-white overflow-hidden" aria-label={t.heroLabel}>
   <div class="hero-viewport absolute inset-0" data-hero>
     <div class="hero-track h-full">
       {slides.map((s, i) => (
-        <div class="hero-slide h-full" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}: ${s.data.title}`}>
+        <div class="hero-slide h-full" role="group" aria-roledescription="slide" aria-label={t.slideOf(i + 1, slides.length, cakeText(s, lang).title)}>
           <Image
             src={cakeImage(s.data.cover)}
-            alt={s.data.title}
+            alt={cakeText(s, lang).title}
             widths={[640, 1024, 1600, 2200]}
             sizes="100vw"
             loading={i === 0 ? 'eager' : 'lazy'}
@@ -33,19 +36,19 @@ const { slides } = Astro.props;
 
   <div class="wrap relative h-full flex flex-col justify-end pb-14 md:pb-20">
     <h1 class="display-xl rise max-w-[14ch] text-white font-light [text-shadow:0_1px_24px_rgba(43,35,32,0.35)]">
-      <em class="not-italic font-light">{site.tagline}</em>
+      <em class="not-italic font-light">{text.tagline}</em>
     </h1>
     <p class="rise rise-2 mt-5 max-w-[48ch] text-white/90 text-[1.05rem] md:text-lg leading-relaxed">
-      {site.intro}
+      {text.intro}
     </p>
     <div class="rise rise-3 mt-8 flex flex-wrap gap-3">
-      <a href="#cakes" class="btn">See the cakes</a>
-      <a href="#enquire" class="btn btn-quiet !text-white !shadow-[inset_0_0_0_1px_rgba(255,255,255,0.6)] hover:!bg-white/15">Ask about a date</a>
+      <a href="#cakes" class="btn">{t.heroSeeCakes}</a>
+      <a href="#enquire" class="btn btn-quiet !text-white !shadow-[inset_0_0_0_1px_rgba(255,255,255,0.6)] hover:!bg-white/15">{t.heroAskDate}</a>
     </div>
 
-    <div class="mt-10 flex items-center gap-2" data-hero-dots role="tablist" aria-label="Choose photo">
+    <div class="mt-10 flex items-center gap-2" data-hero-dots role="tablist" aria-label={t.heroDots}>
       {slides.map((s, i) => (
-        <button type="button" class="hero-dot" role="tab" aria-label={s.data.title} aria-current={i === 0 ? 'true' : 'false'} data-index={i}></button>
+        <button type="button" class="hero-dot" role="tab" aria-label={cakeText(s, lang).title} aria-current={i === 0 ? 'true' : 'false'} data-index={i}></button>
       ))}
     </div>
   </div>

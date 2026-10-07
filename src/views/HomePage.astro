@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Lookbook from '../components/Lookbook.astro';
+import About from '../components/About.astro';
+import Courses from '../components/Courses.astro';
+import Enquire from '../components/Enquire.astro';
+import type { Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+const cakes = (await getCollection('cakes')).sort((a, b) => a.data.order - b.data.order);
+const featured = cakes.filter((c) => c.data.featured);
+const slides = featured.length ? featured : cakes.slice(0, 4);
+---
+
+<Base lang={lang}>
+  <Hero slides={slides} lang={lang} />
+  <Lookbook cakes={cakes} lang={lang} />
+  <About lang={lang} />
+  <Courses lang={lang} />
+  <Enquire lang={lang} />
+</Base>

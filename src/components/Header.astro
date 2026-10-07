@@ -1,17 +1,26 @@
 ---
 import { site } from '../site.config';
-const home = Astro.url.pathname === '/';
+import { barePath, href, ui, type Lang } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const home = barePath(Astro.url.pathname) === '/';
 ---
 
 <header class={`absolute inset-x-0 top-0 z-20 ${home ? 'text-white' : 'text-cocoa'}`}>
-  <div class="wrap flex items-center justify-between py-5 md:py-7">
-    <a href="/" class="font-display text-[1.35rem] md:text-2xl tracking-wide no-underline" style="color: inherit">
+  <div class="wrap flex items-center justify-between gap-3 py-4 md:py-6">
+    <a href={href(lang, '/')} class="font-display text-[1.15rem] min-[400px]:text-[1.3rem] md:text-2xl tracking-wide no-underline leading-tight" style="color: inherit">
       {site.name}
     </a>
-    <nav aria-label="Main" class="flex items-center gap-6 md:gap-9 text-[0.95rem] font-normal">
-      <a href="/#cakes" class="hidden sm:inline hover:opacity-70 transition-opacity" style="color: inherit">Cakes</a>
-      <a href="/#courses" class="hidden sm:inline hover:opacity-70 transition-opacity" style="color: inherit">Courses</a>
-      <a href="/#enquire" class="hover:opacity-70 transition-opacity" style="color: inherit">Enquire</a>
-    </nav>
+    <div class="flex items-center gap-4 md:gap-9">
+      <nav aria-label={t.navLabel} class="flex items-center gap-6 md:gap-9 text-[0.95rem] font-normal">
+        <a href={href(lang, '/#cakes')} class="hidden sm:inline hover:opacity-70 transition-opacity" style="color: inherit">{t.navCakes}</a>
+        <a href={href(lang, '/#courses')} class="hidden sm:inline hover:opacity-70 transition-opacity" style="color: inherit">{t.navCourses}</a>
+        <a href={href(lang, '/#enquire')} class="hidden min-[400px]:inline hover:opacity-70 transition-opacity" style="color: inherit">{t.navContact}</a>
+      </nav>
+      <LangSwitch lang={lang} />
+    </div>
   </div>
 </header>

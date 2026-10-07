@@ -77,6 +77,20 @@ content:
       - name: body
         label: Longer description
         type: text
+      - name: title_sk
+        label: Cake name (Slovak)
+        description: Shown on the Slovak version of the site. Leave empty to use the English name.
+        type: string
+      - name: summary_sk
+        label: One-line description (Slovak)
+        type: text
+      - name: description_sk
+        label: Longer description (Slovak)
+        type: text
+      - name: flavours_sk
+        label: Flavours (Slovak)
+        type: string
+        list: true
 
   - name: site
     label: Site details
@@ -105,4 +119,13 @@ content:
         type: string
       - name: leadTime
         label: Notice needed for orders
+        type: text
+      - name: tagline_sk
+        label: Headline on the home page (Slovak)
+        type: string
+      - name: intro_sk
+        label: Sentence under the headline (Slovak)
+        type: text
+      - name: leadTime_sk
+        label: Notice needed for orders (Slovak)
         type: text

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import CakePage from '../../views/CakePage.astro';
+import CakePage from '../../../views/CakePage.astro';
 
 export async function getStaticPaths() {
   const cakes = await getCollection('cakes');
@@ -8,4 +8,4 @@ export async function getStaticPaths() {
 }
 const { cake } = Astro.props;
 ---
-<CakePage cake={cake} lang="en" />
+<CakePage cake={cake} lang="sk" />

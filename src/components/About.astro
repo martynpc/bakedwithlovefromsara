@@ -1,21 +1,20 @@
 ---
 import { site } from '../site.config';
+import { ui, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
 ---
 
 <section id="about" class="scroll-mt-20 pt-24 md:pt-32">
   <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16 items-start">
     <div class="md:col-span-5">
-      <h2 class="display-lg">How Sára bakes</h2>
+      <h2 class="display-lg">{t.aboutTitle}</h2>
     </div>
     <div class="md:col-span-7 space-y-5 text-[1.1rem] md:text-[1.15rem] leading-[1.7]">
-      <p>
-        Light sponges, cream and fresh fruit. No artificial additives or substitutes, and nothing you
-        couldn’t buy in an ordinary shop.
-      </p>
-      <p>
-        {site.baker} bakes in Dorset, one cake at a time, for birthdays, celebrations and ordinary
-        Sundays.
-      </p>
+      <p>{t.about1}</p>
+      <p>{t.about2(site.baker)}</p>
     </div>
   </div>
 </section>

@@ -51,3 +51,11 @@ Sara normally does this herself in Pages CMS (app.pagescms.org). To do it by han
 - Sara edits cakes and site details at app.pagescms.org as an email-invited collaborator on martynpc/bakedwithlovefromsara.
 - Every save is a commit to `main`; Cloudflare Pages rebuilds automatically. A failed build leaves the previous version live.
 - The content schema is deliberately lenient (blank optional fields default safely). Don't tighten it without updating `.pages.yml`.
+
+## Languages (English / Slovak)
+- English at `/`, Slovak at `/sk` (every page exists in both; `src/pages/sk/` mirrors `src/pages/`).
+- Page markup lives once in `src/views/` (HomePage, CakePage) and takes a `lang` prop; route files are thin wrappers.
+- All interface text is in `src/i18n.ts` (`ui.en` / `ui.sk`). Never hard-code English text in components; add a key to both languages.
+- Cakes: `title_sk`, `summary_sk`, `description_sk`, `flavours_sk` (optional, fall back to English). Site details: `tagline_sk`, `intro_sk`, `leadTime_sk` in `src/data/site.json`.
+- The round EN / SK switch (`src/components/LangSwitch.astro`) links to the same page in the other language. `hreflang` alternates are set in `Base.astro`.
+- Slovak copy was written by Claude; Sara should review it and correct it in Pages CMS.

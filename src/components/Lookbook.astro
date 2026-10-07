@@ -2,37 +2,39 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { cakeImage } from '../lib/images';
+import { cakeText, href, ui, type Lang } from '../i18n';
 
-interface Props { cakes: CollectionEntry<'cakes'>[] }
-const { cakes } = Astro.props;
+interface Props { cakes: CollectionEntry<'cakes'>[]; lang: Lang }
+const { cakes, lang } = Astro.props;
+const t = ui[lang];
 ---
 
 <section id="cakes" class="scroll-mt-20 pt-20 md:pt-28">
   <div class="wrap">
     <div class="max-w-[60ch]">
-      <h2 class="display-lg">Recent cakes</h2>
+      <h2 class="display-lg">{t.recentCakes}</h2>
       <p class="mt-4 text-[1.05rem]">
-        Every cake is made to order. These are a few from the last year; tap one for a closer look.
+        {t.recentIntro}
       </p>
     </div>
 
     <ul class="lookbook mt-10 md:mt-14 list-none p-0 m-0">
-      {cakes.map((c) => (
+      {cakes.map((c) => { const ct = cakeText(c, lang); return (
         <li class={`tile relative ${c.data.tile === 'wide' ? 'tile-wide' : ''} ${c.data.tile === 'tall' ? 'tile-tall' : ''}`}>
-          <a href={`/cakes/${c.id}`} class="group block h-full no-underline" aria-label={`${c.data.title} — ${c.data.occasion}`}>
+          <a href={href(lang, `/cakes/${c.id}`)} class="group block h-full no-underline" aria-label={`${ct.title} — ${t.occasion[c.data.occasion]}`}>
             <Image
               src={cakeImage(c.data.cover)}
-              alt={c.data.title}
+              alt={ct.title}
               widths={[480, 800, 1200]}
               sizes="(min-width: 768px) 50vw, 100vw"
               loading="lazy"
             />
             <span class="absolute left-3 bottom-3 md:left-4 md:bottom-4 max-w-[calc(100%-1.5rem)] inline-flex items-baseline gap-2 rounded-full bg-milk/90 px-3.5 py-1.5 text-[0.85rem] text-cocoa backdrop-blur-sm">
-              <span class="font-display text-[1.05rem] leading-tight truncate">{c.data.title}</span>
+              <span class="font-display text-[1.05rem] leading-tight truncate">{ct.title}</span>
             </span>
           </a>
         </li>
-      ))}
+      ); })}
     </ul>
   </div>
 </section>

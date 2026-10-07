@@ -1,0 +1,53 @@
+---
+// Small round EN / SK switch. The current language is solid; the other is a
+// link to the same page in that language.
+import { LANGS, switchHref, ui, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<nav class="lang-switch" aria-label={t.langLabel}>
+  {LANGS.map((l, i) => (
+    <>
+      {i > 0 && <span class="lang-sep" aria-hidden="true">/</span>}
+      {l === lang ? (
+        <span class="lang-current" lang={l} aria-current="true" title={t.langNames[l]}>{l.toUpperCase()}</span>
+      ) : (
+        <a href={switchHref(Astro.url.pathname, l)} hreflang={l} lang={l} title={ui[l].langNames[l]} aria-label={ui[l].langNames[l]}>{l.toUpperCase()}</a>
+      )}
+    </>
+  ))}
+</nav>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.12rem;
+    width: 3.3rem;
+    height: 3.3rem;
+    flex: none;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    transition: box-shadow 200ms var(--ease-soft);
+  }
+  .lang-switch:hover { box-shadow: inset 0 0 0 1px currentColor; }
+  .lang-current { font-weight: 600; }
+  .lang-sep { opacity: 0.45; }
+  .lang-switch a {
+    color: inherit;
+    opacity: 0.6;
+    text-decoration: none;
+    padding: 0.6rem 0.05rem;
+    margin: -0.6rem 0;
+    transition: opacity 200ms var(--ease-soft);
+  }
+  .lang-switch a:hover { opacity: 1; }
+</style>

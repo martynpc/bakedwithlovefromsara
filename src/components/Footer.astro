@@ -1,13 +1,18 @@
 ---
 import { site } from '../site.config';
+import type { Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
 const year = new Date().getFullYear();
+const location = lang === 'sk' ? 'Dorset, Spojené kráľovstvo' : site.location;
 ---
 
 <footer class="border-t border-line mt-24">
   <div class="wrap py-10 md:py-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
     <div>
       <p class="font-display text-2xl text-cocoa">{site.name}</p>
-      <p class="mt-1 text-taupe-soft text-[0.95rem]">{site.baker}, {site.location}</p>
+      <p class="mt-1 text-taupe-soft text-[0.95rem]">{site.baker}, {location}</p>
     </div>
     <ul class="flex flex-wrap gap-x-7 gap-y-2 text-[0.95rem]">
       <li><a class="link" href={site.facebook} rel="me noopener" target="_blank">Facebook</a></li>
