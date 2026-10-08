@@ -15,7 +15,7 @@ const t = ui[lang];
       {l === lang ? (
         <span class="lang-current" lang={l} aria-current="true" title={t.langNames[l]}>{l.toUpperCase()}</span>
       ) : (
-        <a href={switchHref(Astro.url.pathname, l)} hreflang={l} lang={l} title={ui[l].langNames[l]} aria-label={ui[l].langNames[l]}>{l.toUpperCase()}</a>
+        <a href={switchHref(Astro.url.pathname, l)} hreflang={l} lang={l} title={ui[l].langNames[l]} aria-label={`${l.toUpperCase()}, ${ui[l].langNames[l]}`}>{l.toUpperCase()}</a>
       )}
     </>
   ))}
@@ -43,7 +43,7 @@ const t = ui[lang];
   .lang-sep { opacity: 0.45; }
   .lang-switch a {
     color: inherit;
-    opacity: 0.6;
+    opacity: 0.78;
     text-decoration: none;
     padding: 0.6rem 0.05rem;
     margin: -0.6rem 0;

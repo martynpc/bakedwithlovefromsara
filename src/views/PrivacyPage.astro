@@ -1,0 +1,50 @@
+---
+// Privacy notice, English and Slovak. Plain-language UK GDPR notice for a
+// one-person home bakery. Review if the site starts collecting anything new.
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import type { Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const updated = { en: 'Last updated October 2026.', sk: 'Naposledy aktualizované v októbri 2026.' }[lang];
+
+const copy = {
+  en: {
+    title: 'Privacy',
+    intro: `This notice explains what happens to your information when you use this website or order from ${site.name}. The business is run by ${site.baker} in Dorset, who is responsible for your information. You can contact her at ${site.email}.`,
+    sections: [
+      ['This website', 'The website does not use cookies and does not ask you to sign in. It is hosted by Cloudflare, which processes technical information such as your IP address to deliver the pages and protect the site from attacks. Visits are counted with Cloudflare Web Analytics, which does not use cookies or identify you.'],
+      ['The order form', 'The order form does not send anything to this website and nothing you type is stored here. When you press the button, your answers are turned into a message and Facebook Messenger opens with it. Nothing is sent until you press send in Messenger. Messages in Messenger are handled by Meta under its own privacy policy.'],
+      ['Email', `If you write to ${site.email} or to hello@bakedwithlovefromsara.co.uk, your email is delivered to Sára’s Gmail inbox (the hello@ address is forwarded through Cloudflare).`],
+      ['What Sára keeps and why', 'To make and deliver your order, Sára keeps your name, how to contact you, the order details, and where needed your delivery address. If you tell her about an allergy, she uses that only to make your cake safely. She keeps order and payment records for as long as the law requires for her accounts, and the rest only as long as it is needed for your order. Your information is never sold or used for advertising.'],
+      ['Your rights', 'You can ask to see the information Sára holds about you, to correct it, or to have it deleted where she does not need to keep it. Write to her at the address above. If you are unhappy with how your information has been handled, you can complain to the Information Commissioner’s Office at ico.org.uk.'],
+    ],
+  },
+  sk: {
+    title: 'Ochrana súkromia',
+    intro: `Toto oznámenie vysvetľuje, čo sa deje s vašimi údajmi, keď používate túto webovú stránku alebo si objednávate od ${site.name}. Podnik vedie ${site.baker} v Dorsete, ktorá za vaše údaje zodpovedá. Môžete ju kontaktovať na ${site.email}.`,
+    sections: [
+      ['Táto webová stránka', 'Stránka nepoužíva cookies a nevyžaduje prihlásenie. Prevádzkuje ju Cloudflare, ktorý spracúva technické údaje, napríklad vašu IP adresu, aby mohol stránky doručiť a chrániť pred útokmi. Návštevy sa počítajú pomocou Cloudflare Web Analytics, ktoré nepoužíva cookies a neidentifikuje vás.'],
+      ['Objednávkový formulár', 'Formulár na tejto stránke nič neodosiela a nič, čo napíšete, sa tu neukladá. Keď stlačíte tlačidlo, z vašich odpovedí sa vytvorí správa a otvorí sa s ňou Facebook Messenger. Nič sa neodošle, kým v Messengeri nestlačíte Odoslať. Správy v Messengeri spracúva spoločnosť Meta podľa vlastných pravidiel ochrany súkromia.'],
+      ['E-mail', `Ak napíšete na ${site.email} alebo na hello@bakedwithlovefromsara.co.uk, správa príde do Sárinej schránky Gmail (adresa hello@ sa presmerúva cez Cloudflare).`],
+      ['Čo Sára uchováva a prečo', 'Aby mohla vašu objednávku pripraviť a doručiť, Sára uchováva vaše meno, kontakt, podrobnosti objednávky a v prípade potreby adresu doručenia. Ak jej poviete o alergii, použije túto informáciu len na to, aby vám tortu pripravila bezpečne. Záznamy o objednávkach a platbách uchováva tak dlho, ako to vyžaduje zákon pre účtovníctvo, ostatné údaje len dovtedy, kým sú potrebné pre vašu objednávku. Vaše údaje nikdy nepredáva ani nepoužíva na reklamu.'],
+      ['Vaše práva', 'Môžete požiadať o prístup k údajom, ktoré o vás Sára má, o ich opravu alebo vymazanie, ak ich nemusí uchovávať. Napíšte jej na uvedenú adresu. Ak nie ste spokojní s tým, ako sa s vašimi údajmi zaobchádzalo, môžete sa obrátiť na britský Úrad informačného komisára (ICO) na ico.org.uk.'],
+    ],
+  },
+}[lang];
+---
+
+<Base lang={lang} title={copy.title} description={copy.intro}>
+  <article class="wrap pt-28 md:pt-36 max-w-[46rem]">
+    <h1 class="display-lg">{copy.title}</h1>
+    <p class="mt-6 text-[1.05rem]">{copy.intro}</p>
+    {copy.sections.map(([h, p]) => (
+      <section class="mt-10">
+        <h2 class="display-md">{h}</h2>
+        <p class="mt-3">{p}</p>
+      </section>
+    ))}
+    <p class="mt-12 text-[0.9rem] text-taupe-soft">{updated}</p>
+  </article>
+</Base>

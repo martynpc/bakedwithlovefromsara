@@ -1,6 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import { cakeImage } from '../lib/images';
+import { cakeText } from '../i18n';
 import Hero from '../components/Hero.astro';
 import Lookbook from '../components/Lookbook.astro';
 import About from '../components/About.astro';
@@ -16,9 +19,12 @@ const { lang } = Astro.props;
 const cakes = (await getCollection('cakes')).sort((a, b) => a.data.order - b.data.order);
 const featured = cakes.filter((c) => c.data.featured);
 const slides = featured.length ? featured : cakes.slice(0, 4);
+// Link-preview image for WhatsApp/Facebook: the first hero cake, cropped to 1200×630.
+const share = await getImage({ src: cakeImage(slides[0].data.cover), width: 1200, height: 630, fit: 'cover', format: 'jpeg', quality: 80 });
+const shareUrl = new URL(share.src, Astro.site).toString();
 ---
 
-<Base lang={lang} schema={[bakerySchema(lang, cakes, Astro.site!), faqSchema(lang)]}>
+<Base lang={lang} ogImage={shareUrl} ogImageAlt={cakeText(slides[0], lang).title} schema={[bakerySchema(lang, cakes, Astro.site!), faqSchema(lang)]}>
   <Hero slides={slides} lang={lang} />
   <Lookbook cakes={cakes} lang={lang} />
   <About lang={lang} />

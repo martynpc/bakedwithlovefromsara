@@ -8,7 +8,7 @@ Showcase website for Sára Ivana, a home baker in Dorset. Static Astro site, hos
 - `npm run images:prep -- ./incoming` — resize/clean phone photos into `src/assets/cakes/`
 
 ## Where things live
-- `src/data/site.json` — tagline, intro, email, Instagram/WhatsApp links, lead time (Sara edits these in Pages CMS → Site details).
+- `src/data/site.json` — tagline, intro, email, Instagram/WhatsApp links, lead time, weekly capacity (Sara edits these in Pages CMS → Site details).
 - `src/site.config.ts` — fixed details (name, Facebook/Messenger) plus the values from site.json. Edit here, not in components.
 - `.pages.yml` — Pages CMS settings: which fields Sara can edit. Keep in sync with `src/content.config.ts`.
 - `src/lib/images.ts` — resolves a cake's photo by FILE NAME from `src/assets/cakes/`, whatever path prefix is stored.
@@ -66,3 +66,17 @@ Sara normally does this herself in Pages CMS (app.pagescms.org). To do it by han
 - Structured data: `src/lib/schema.ts` — Bakery + FAQPage on home pages, Product (or Course) + BreadcrumbList on cake pages. Only use facts already on the site.
 - `/llms.txt` is generated from content on every build (`src/pages/llms.txt.ts`).
 - FAQ text lives in `src/data/faq.json` (EN + SK), editable in Pages CMS → Questions (FAQ).
+
+## Order form (Messenger)
+- `src/components/Enquire.astro`: the form never submits anywhere. On "Continue in Messenger" it builds a plain-text message from the answers (in the page's language), copies it to the clipboard and opens `https://m.me/saralovebakecakes?text=…`. A panel then shows the message with Open Messenger / Copy buttons in case the prefill is dropped (e.g. an existing conversation or desktop).
+- All orders stay in Sara's Messenger. No form service, no stored data. Message labels live in `ui.*.msg` in `src/i18n.ts`.
+- Dates under 14 days away show a gentle "may already be full" note.
+
+## Performance and housekeeping
+- Fonts are self-hosted via `@fontsource/*` (no Google Fonts request: faster and nothing for the privacy notice to disclose).
+- Lighthouse mobile, Oct 2026: 100 / 100 / 100 / 100 on home, Slovak home and cake pages. `--color-taupe-soft` was darkened to #71665f for 4.5:1 contrast; keep any new small text at or above that.
+- Icons: `public/favicon.svg` is the source; `node scripts/make-icons.mjs` regenerates favicon.ico, apple-touch-icon.png and the manifest icons.
+- `public/_headers`: security headers and long caching for `/_astro/*`. No CSP yet (would need hashes for Astro's inline scripts).
+- Share previews: home pages use the first hero cake cropped to 1200×630; cake pages use their own photo.
+- `/privacy` and `/sk/privacy`: plain-language UK GDPR notice (`src/views/PrivacyPage.astro`). Update it if the site starts collecting anything.
+- `src/pages/404.astro`: one bilingual not-found page, noindex.

@@ -2,15 +2,15 @@
   "items": [
     {
       "q": "How do I order a cake?",
-      "a": "Send Sára a message on Facebook or an email with the date, how many people it's for, and any ideas you have. She'll reply with suggestions and a price.",
+      "a": "Use the order form on this page. It opens Facebook Messenger with your date, numbers and ideas already written, so you only need to press send. Sára will reply with suggestions and a price. You can also email her.",
       "q_sk": "Ako si objednám tortu?",
-      "a_sk": "Napíšte Sáre na Facebooku alebo e-mailom dátum, pre koľko ľudí má torta byť a svoje nápady. Odpovie vám s návrhmi a cenou."
+      "a_sk": "Použite objednávkový formulár na tejto stránke. Otvorí Facebook Messenger s dátumom, počtom hostí a vašimi nápadmi už napísanými, stačí stlačiť Odoslať. Sára vám odpovie s návrhmi a cenou. Môžete jej aj napísať e-mail."
     },
     {
       "q": "How far ahead should I order?",
-      "a": "Please allow at least two weeks' notice for celebration cakes. If your date is sooner, ask anyway.",
+      "a": "Please allow at least two weeks' notice for celebration cakes. Sára bakes only four celebration cakes a week, so popular dates go quickly. If your date is sooner, ask anyway.",
       "q_sk": "S akým predstihom si mám tortu objednať?",
-      "a_sk": "Na slávnostné torty prosím počítajte aspoň s dvojtýždňovým predstihom. Ak potrebujete tortu skôr, pokojne sa spýtajte."
+      "a_sk": "Na slávnostné torty prosím počítajte aspoň s dvojtýždňovým predstihom. Sára pečie len štyri slávnostné torty týždenne, takže obľúbené termíny sa rýchlo zaplnia. Ak potrebujete tortu skôr, pokojne sa spýtajte."
     },
     {
       "q": "What goes into the cakes?",

@@ -1,0 +1,25 @@
+---
+// One "not found" page for both languages (Cloudflare Pages serves 404.html).
+import Base from '../layouts/Base.astro';
+---
+
+<Base lang="en" title="Page not found" description="This page could not be found." noindex alternates={false}>
+  <section class="wrap pt-32 md:pt-44 pb-10 grid md:grid-cols-2 gap-12 md:gap-16">
+    <div>
+      <h1 class="display-lg">This page isn’t here</h1>
+      <p class="mt-5 text-[1.05rem]">It may have moved, or the link has a typo.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/" class="btn">Go to the home page</a>
+        <a href="/#cakes" class="btn btn-quiet">See the cakes</a>
+      </div>
+    </div>
+    <div lang="sk">
+      <h2 class="display-lg">Táto stránka tu nie je</h2>
+      <p class="mt-5 text-[1.05rem]">Možno sa presunula alebo je v odkaze preklep.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/sk" class="btn">Na úvodnú stránku</a>
+        <a href="/sk#cakes" class="btn btn-quiet">Pozrieť torty</a>
+      </div>
+    </div>
+  </section>
+</Base>

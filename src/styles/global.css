@@ -11,7 +11,7 @@
   --color-berry: #8f3448;
   --color-berry-deep: #6e2637;
   --color-taupe: #6b5f58;
-  --color-taupe-soft: #9a8f88;
+  --color-taupe-soft: #71665f; /* darkened from #9a8f88 for 4.5:1 contrast */
   --color-cocoa: #2b2320;
   --color-line: #e9e1db;
 

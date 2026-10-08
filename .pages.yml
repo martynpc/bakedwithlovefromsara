@@ -120,6 +120,10 @@ content:
       - name: leadTime
         label: Notice needed for orders
         type: text
+      - name: capacity
+        label: How many cakes you take each week
+        description: Shown under the order form. Leave empty to hide.
+        type: text
       - name: tagline_sk
         label: Headline on the home page (Slovak)
         type: string
@@ -128,6 +132,9 @@ content:
         type: text
       - name: leadTime_sk
         label: Notice needed for orders (Slovak)
+        type: text
+      - name: capacity_sk
+        label: How many cakes you take each week (Slovak)
         type: text
 
   - name: faq

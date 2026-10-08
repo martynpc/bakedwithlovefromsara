@@ -17,6 +17,7 @@ export const site = {
   // e.g. 'https://wa.me/447XXXXXXXXX'; empty hides the WhatsApp button.
   whatsapp: editable.whatsapp,
   leadTime: editable.leadTime,
+  capacity: editable.capacity,
 };
 
 /** Editable site text in the requested language (Slovak falls back to English). */
@@ -26,7 +27,8 @@ export function siteText(lang: Lang) {
       tagline: editable.tagline_sk || editable.tagline,
       intro: editable.intro_sk || editable.intro,
       leadTime: editable.leadTime_sk || editable.leadTime,
+      capacity: editable.capacity_sk || editable.capacity,
     };
   }
-  return { tagline: editable.tagline, intro: editable.intro, leadTime: editable.leadTime };
+  return { tagline: editable.tagline, intro: editable.intro, leadTime: editable.leadTime, capacity: editable.capacity };
 }

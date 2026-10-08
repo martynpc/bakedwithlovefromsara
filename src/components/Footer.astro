@@ -1,6 +1,6 @@
 ---
 import { site } from '../site.config';
-import type { Lang } from '../i18n';
+import { href, type Lang } from '../i18n';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -20,7 +20,8 @@ const location = lang === 'sk' ? 'Dorset, Spojené kráľovstvo' : site.location
       <li><a class="link" href={`mailto:${site.email}`}>{site.email}</a></li>
     </ul>
   </div>
-  <div class="wrap pb-8 text-[0.8rem] text-taupe-soft">
-    © {year} {site.name}
+  <div class="wrap pb-8 flex flex-wrap gap-x-6 gap-y-1 text-[0.8rem] text-taupe-soft">
+    <span>© {year} {site.name}</span>
+    <a class="link !text-taupe-soft" href={href(lang, '/privacy')}>{lang === 'sk' ? 'Ochrana súkromia' : 'Privacy'}</a>
   </div>
 </footer>
