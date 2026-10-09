@@ -16,6 +16,8 @@ const cakes = defineCollection({
     gallery: z.array(z.string()).nullish().transform((v) => v ?? []),
     // Shown in the hero crossfade when true (use 3–5 of the best photos).
     featured: z.boolean().nullish().transform((v) => v ?? false),
+    // Which part of the photo to keep when it is cropped (grid tiles, slideshow, cake page).
+    focus: z.enum(['top', 'center', 'bottom']).nullish().catch('center').transform((v) => v ?? 'center'),
     // Lookbook tile size: 'wide' spans two columns, 'tall' spans two rows.
     tile: z.enum(['standard', 'wide', 'tall']).nullish().catch('standard').transform((v) => v ?? 'standard'),
     // Lower numbers appear first.

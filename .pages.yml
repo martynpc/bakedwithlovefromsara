@@ -53,6 +53,13 @@ content:
         default: standard
         options:
           values: [standard, wide, tall]
+      - name: focus
+        label: Keep this part of the photo in view
+        description: When the photo is cropped to fit. Choose Top for photos of people so heads are never cut off.
+        type: select
+        default: center
+        options:
+          values: [top, center, bottom]
       - name: order
         label: Position
         description: Lower numbers appear first, e.g. 10, 20, 30.

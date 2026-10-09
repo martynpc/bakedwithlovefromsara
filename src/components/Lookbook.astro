@@ -29,6 +29,7 @@ const t = ui[lang];
               sizes={c.data.tile === 'wide' ? '(min-width: 768px) 50vw, 50vw' : c.data.tile === 'tall' ? '(min-width: 768px) 33vw, 50vw' : '(min-width: 768px) 25vw, 50vw'}
               quality={70}
               loading="lazy"
+              style={`object-position: center ${c.data.focus === 'top' ? '15%' : c.data.focus === 'bottom' ? '85%' : '50%'}`}
             />
             <span class="absolute left-3 bottom-3 md:left-4 md:bottom-4 max-w-[calc(100%-1.5rem)] inline-flex items-baseline gap-2 rounded-full bg-milk/90 px-3.5 py-1.5 text-[0.85rem] text-cocoa backdrop-blur-sm">
               <span class="font-display text-[1.05rem] leading-tight truncate">{ct.title}</span>

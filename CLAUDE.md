@@ -21,7 +21,7 @@ Showcase website for Sára Ivana, a home baker in Dorset. Static Astro site, hos
 ## Adding a cake (the common job)
 Sara normally does this herself in Pages CMS (app.pagescms.org). To do it by hand:
 1. Put the photo in `src/assets/cakes/` (run `images:prep` if it came from a phone).
-2. Create `src/content/cakes/<slug>.md` with `title`, `occasion`, `cover: /cakes/<file>.jpg`, `summary`, optional `flavours`, `serves`, `fromPrice`.
+2. Create `src/content/cakes/<slug>.md` with `title`, `occasion`, `cover: /cakes/<file>.jpg`, `summary`, optional `flavours`, `serves`, `fromPrice`. For photos of people set `focus: top` so crops never cut off heads (`focus` = top/center/bottom, applied as object-position on the grid tile, hero slide and cake page).
 3. Set `featured: true` on 3–5 cakes total for the hero. Use `tile: wide` or `tile: tall` so the grid fills (4 columns on desktop; keep the cell count a multiple of 4).
 4. `npm run build`, check it, commit. Cloudflare deploys on push.
 

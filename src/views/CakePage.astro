@@ -33,6 +33,7 @@ const isEn = lang === 'en';
           sizes="(min-width: 768px) 58vw, 100vw"
           loading="eager"
           fetchpriority="high"
+          style={`object-position: center ${cake.data.focus === 'top' ? '10%' : cake.data.focus === 'bottom' ? '90%' : '50%'}`}
           quality={75}
           class="w-full h-auto md:max-h-[78vh] object-cover rounded-2xl"
         />
